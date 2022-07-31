@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'orders/index'
+  get 'orders/show'
   get 'customers/new'
   get 'customers/index'
   get 'customers/show'
