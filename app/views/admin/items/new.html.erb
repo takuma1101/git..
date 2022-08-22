@@ -18,7 +18,7 @@
 
  <div class="field">
   <h6><%= f.label :ジャンル %>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %></h6>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, :prompt => "--選択してください--" %></h6>
 
  </div>
 

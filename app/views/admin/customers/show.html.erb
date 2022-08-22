@@ -5,7 +5,7 @@
     <tr></tr>
   <tr>
 	  <th>会員ID</th>
-	  <th><%= @custmer.id%></th>
+	  <th><%= @customer.id%></th>
   </tr>
   <tr>
 	  <th>氏名</th>
@@ -21,19 +21,19 @@
   </tr>
    <tr>
 	  <th>住所</th>
-	  <th><%=@customer.address%></th>
+	  <th><%= @customer.address%></th>
   </tr>
    <tr>
 	  <th>電話番号</th>
-	  <th> <%=@customer.telephone_number%></th>
+	  <th> <%= @customer.telephone_number%></th>
   </tr>
    <tr>
 	  <th>メールアドレス</th>
-	  <th><%= <@customer.email%></th>
+	  <th><%= @customer.email%></th>
   </tr>
   <tr>
     <th>会員ステータス</th>
-  <% if @custmer.is_active == true%>
+  <% if @customer.is_active == true%>
         <th>有効</th>
         <% else %>
         <th>退会</th>
