@@ -2,11 +2,12 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
+    @customer = current_customer
+    @addresses = @customer.addresses
   end
 
   def create
     @address = Address.new(address_params)
-    @address.customer_id = current_customer.id
     if @address.save
       flash[:success] = "新しい配送先の登録が完了しました。"
       redirect_to public_addresses_path
