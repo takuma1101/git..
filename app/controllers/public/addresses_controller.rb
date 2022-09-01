@@ -2,12 +2,13 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
-    @customer = current_customer
+     @customer = current_customer
     @addresses = @customer.addresses
   end
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
       flash[:success] = "新しい配送先の登録が完了しました。"
       redirect_to public_addresses_path
@@ -21,6 +22,26 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
+  end
+
+ def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+       flash[:success] = "配送先の変更内容を保存しました。"
+       redirect_to public_addresses_path
+    else
+       flash[:danger] = "配送先の変更内容に不備があります。"
+       redirect_back(fallback_location: root_path)
+    end
+ end
+
+  def destroy
+    @address = Address.find(params[:id])
+    @address.customer_id = current_customer.id
+    @address.destroy
+    flash[:success] = "配送先の削除が完了しました。"
+    redirect_to public_addresses_path
   end
 
 

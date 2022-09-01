@@ -6,9 +6,12 @@
     <div class="col-xs-12 col-sm-12 col-md-6 item-details mx-auto">
       <h2><strong><%= @item.name %></strong></h2>
       <h4><%= simple_format(@item.introduction)%></h4>
-
-        <h3>￥ <%= @item.add_tax_price.to_s(:delimited) %> (税込)</h3>
-
+      <%  if @item.is_active == true %>
+        <h3>￥ <%= @item.with_tax_price%> (税込)</h3>
+        <p><%= render "item_amount_form", cart_item: @cart_item, item: @item %></p>
+      <% else %>
+        <h3 class="text-danger">販売停止中です</h3>
+      <% end %>
     </div>
   </div>
 </div>

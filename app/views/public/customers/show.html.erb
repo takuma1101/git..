@@ -1,4 +1,4 @@
-<p class="under_mypage"><strong>登録情報</strong><%= link_to "編集する", public_customer_edit_path, class:"btn btn-primary mypage_edit" %>
+<p class="under_mypage"><strong>登録情報</strong><%= link_to "編集する", edit_public_customer_path, class:"btn btn-primary mypage_edit" %>
 
 
 		<div class="row">
@@ -31,6 +31,7 @@
 				</table>
 			</div><br><br>
 		</div>
-		<!--<p><strong>配送先　　</strong>-->
-		<% #link_to "一覧を見る", public_addresses_path, class:"btn btn-primary" %>
-		<!--<p><strong>注文履歴　</strong>--><% #link_to "一覧を見る", public_orders_path, class:"btn btn-primary" %>
+		<p><strong>配送先</strong>
+		<%= link_to "一覧を見る", public_addresses_path, class:"btn btn-primary" %>
+		<p><strong>注文履歴</strong>
+		<%= link_to "一覧を見る", public_orders_path, class:"btn btn-primary" %>

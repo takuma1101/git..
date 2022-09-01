@@ -2,8 +2,8 @@ class CreateOrders < ActiveRecord::Migration[6.1]
   def change
     create_table :orders do |t|
 
-      t.integer :customers_id
-      t.string :shiping_fee
+      t.integer :customer_id
+      t.string :shipping_fee
       t.string :bill
       t.integer :payment_method
       t.string :name

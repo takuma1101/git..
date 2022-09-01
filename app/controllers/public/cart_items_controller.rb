@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
      @cart_items = CartItem.where(customer_id: current_customer.id)
+     @total = 0
   end
 
  def create
@@ -9,13 +10,13 @@ class Public::CartItemsController < ApplicationController
       @cart_item_check.amount += params[:cart_item][:amount].to_i
       @cart_item_check.save
       flash[:success] = "カートに存在済のアイテムです"
-      redirect_to cart_items_path
+      redirect_to public_cart_items_path
     else
       @cart_item = CartItem.new(cart_item_params)
       @cart_item.customer_id = current_customer.id
       if @cart_item.save
         flash[:success] = "カートに追加しました"
-        redirect_to cart_items_path
+        redirect_to public_cart_items_path
       else
         flash[:danger] = "予期せぬエラーが発生しました"
         redirect_back(fallback_location: root_path)
@@ -27,10 +28,10 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
       flash[:success] = "個数を変更しました"
-      redirect_back(fallback_location: root_path)
+       redirect_to public_cart_items_path
     else
       flash[:danger] = "正しい個数を入力してください"
-      redirect_back(fallback_location: root_path)
+       redirect_to public_cart_items_path
     end
   end
 

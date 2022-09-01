@@ -25,27 +25,22 @@ namespace :admin do
 
 
 
-    namespace :public do
-     get '/about' => 'homes#about'
-     get 'orders/new'
-     get 'orders/index'
-     get 'orders/show'
-     get 'orders/thank'
 
-     end
 
    namespace :public do
-    get '/customer' => 'customers#show'
-    get '/customer/edit' => 'customers#edit'
-    patch '/customer' => 'customers#update'
+    get '/about' => 'homes#about'
     get '/customer/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customer/withdrawal' => 'customers#withdrawal', as: 'withdrawal'
 
-    resources :items,only:[:index, :show]
+    resources :items, only:[:index, :show]
+    resources :customers, only:[:show, :edit, :update]
     resources :cart_items, only: [:index, :create, :destroy, :update]
-    resources :orsers,only:[:new, :index, :show, :thank]
-    resources :addresses,only:[:index,:edit, :create]
-     delete "cart_items/destroy_all" => "cart_items#destroy_all"
+    delete "cart_items" => "cart_items#destroy_all", as: 'destroy_all'
+    resources :orders, only:[:new, :create, :index, :show]
+    post "/orders/confirm" => "orders#confirm"
+    get "/orders/thanks" => "orders#thanks"
+    resources :addresses, only:[:index, :edit, :create, :destroy, :update]
+
   end
 
    devise_scope :admin do
