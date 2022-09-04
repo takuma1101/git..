@@ -18,8 +18,9 @@ namespace :admin do
     resources :genres
     resources :items
     resources :customers
-    resources :orders,only:[:index,:show,:update]
-     resources :order_items, only:[:update]
+    resources :orders,only:[:show,:update]
+    resources :order_items, only:[:update]
+    resources :order_detaiil,only:[:update]
 
   end
 
@@ -36,9 +37,9 @@ namespace :admin do
     resources :customers, only:[:show, :edit, :update]
     resources :cart_items, only: [:index, :create, :destroy, :update]
     delete "cart_items" => "cart_items#destroy_all", as: 'destroy_all'
-    resources :orders, only:[:new, :create, :index, :show]
-    post "/orders/confirm" => "orders#confirm"
+     post "/orders/confirm" => "orders#confirm"
     get "/orders/thanks" => "orders#thanks"
+    resources :orders, only:[:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :destroy, :update]
 
   end

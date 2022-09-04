@@ -5,10 +5,15 @@ class Public::CartItemsController < ApplicationController
   end
 
  def create
-    @cart_item_check = CartItem.find_by(customer_id: current_customer.id, item_id: params[:cart_item][:item_id])
-    if @cart_item_check
-      @cart_item_check.amount += params[:cart_item][:amount].to_i
-      @cart_item_check.save
+   @cart_item = CartItem.new(cart_item_params)
+    cart_item = CartItem.find_by(customer_id: current_customer.id, item_id: cart_item_params[:item_id])
+    if cart_item
+      #cart_item_check.amount += params[:cart_item][:amount].to_i
+      #cart_item_check.save
+      binding.pry
+      new_quantity = cart_item.amount + @cart_item.amount
+      cart_item.update_attribute(:amount, new_quantity)
+      @cart_item.delete
       flash[:success] = "カートに存在済のアイテムです"
       redirect_to public_cart_items_path
     else

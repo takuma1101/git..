@@ -46,6 +46,9 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.shipping_fee = 800
+    @cart_items = current_customer.cart_items.all
+    @total = @cart_items.inject(0) { |sum, cart_item| sum +  cart_item.subtotal }
+    @order.bill = @total + @order.shipping_fee.to_i
     if @order.save
       @cart_items = CartItem.where(customer_id: current_customer.id)
       @cart_items.each do |cart_item|
@@ -70,6 +73,7 @@ class Public::OrdersController < ApplicationController
 
   def index
      @orders = Order.where(customer_id: current_customer.id).order(created_at: :desc)
+
   end
 
   def show
