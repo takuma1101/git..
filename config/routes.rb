@@ -19,8 +19,8 @@ namespace :admin do
     resources :items
     resources :customers
     resources :orders,only:[:show,:update]
-    resources :order_items, only:[:update]
-    resources :order_detaiil,only:[:update]
+    resources :order_details,only:[:update]
+
 
   end
 

@@ -1,33 +1,28 @@
-<div class="plate mx-auto" id="cork">
-  <span>Welcome!!</span>
-  </div>
-<div class="home-box mx-auto my-3">
-    <p class="home-text">ようこそ、ながのCAKEへ！<br>
-    このサイトは、ケーキ販売のECサイトになります。
-    会員でない方も商品の閲覧はできますが、<br>
-    購入には会員登録が必要になります。
-    </p>
-  <div class="slide">
-   <!-- <div class="slide-item"><img class="slide-img" src="assets/shopImage.jpg"></div>
-    <div class="slide-item"><img class="slide-img" src="assets/strawberry.jpg"></div>
-    <div class="slide-item"><img class="slide-img" src="assets/top-image.jpg"></div>-->
-</div>
-</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 mx-auto mr-3v">
+				  <div class= "top-image">
+				  <div class= "mx-auto d-flex align-items-center text-center justify-content-center" style= "height: 100vh;">
+				  <span class="bg-light">ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。</br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります
+          </span>
+          </div>
+          </div>
 
-
-<div class="container new-item">
   <h2>新着商品</h2>
   <div class="row">
       <% @items.first(4).each do |item| %>
     <div class="col-md-3 col-sm-6">
-        <div class="card w-100 bg-transparent border-0" style="width: 18rem;">
+        <div class="col-md-2.5 card mr-3v text-dark">
           <%= link_to  public_item_path(item) do %>
             <div class="img-wrap"><%= image_tag item.image , width: "100%", height: "200px",fallback: "no_image.jpg" %></div>
           <% end %>
           <div class="card-body">
             <p class="card-text"><%= item.name %></p>
             <% if item.is_active == true %>
-              <p class="card-text">￥<%= item.price %>円(税抜き)</p>
+              <p class="card-text">￥<%= item.price %>円</p>
             <% else %>
               <p class="card-text text-danger">販売停止中</p>
             <% end %>
